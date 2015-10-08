@@ -1,0 +1,9 @@
+docs
+fuel/app/logs/*/*/*
+fuel/app/cache/*/*
+/fuel/vendor
+/fuel/core/*
+/fuel/packages/*
+/composer.lock
+Thumbs.db
+desktop.ini
