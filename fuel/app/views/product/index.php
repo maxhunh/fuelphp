@@ -1,3 +1,4 @@
+<?php $_view; ?>
 <table class="table table-hover">
     <thead>
         <tr>

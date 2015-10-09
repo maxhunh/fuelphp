@@ -33,4 +33,22 @@ class Model_Product extends \Orm\Model
         return $val;
     }
 
+    public static function createProduct($input = null)
+    {
+         if ($input::method() == 'POST')
+         {
+            $product = Model_Product::forge(array(
+                'name' => $input::post('name'),
+                'description' => $input::post('description'),
+                'price' => $input::post('price')
+                ));
+
+            if ($product and $product->save()) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+    }
+
 }
