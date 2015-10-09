@@ -269,6 +269,7 @@ return array(
 		 *     array('auth'	=> PKGPATH.'auth/')
 		 * );
 		 */
+        // Menote: enable package(orm) to use
 		'packages'  => array(
 			'orm',
 		),

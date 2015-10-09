@@ -1,3 +1,4 @@
+<!-- Menote: Template default of app  -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +26,7 @@
 			<div class="alert alert-danger">
 				<strong>Error</strong>
 				<p>
+                <!-- Menote: Build error list with array error -->
 				<?php echo implode('</p><p>', e((array) Session::get_flash('error'))); ?>
 				</p>
 			</div>

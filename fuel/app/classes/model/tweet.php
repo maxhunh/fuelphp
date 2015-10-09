@@ -23,6 +23,7 @@ class Model_Tweet extends Model
 		),
 	);
 
+    // Menote: Validate input params
 	public static function validate($factory)
 	{
 		$val = Validation::forge($factory);

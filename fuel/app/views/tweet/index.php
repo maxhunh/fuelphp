@@ -19,7 +19,11 @@
              <td>
                 <div class="btn-toolbar">
                    <div class="btn-group">
-                      <?php echo Html::anchor('tweet/view/'.$item->id, '<i class="icon-eye-open"></i> View', array('class' => 'btn btn-default btn-sm')); ?><?php echo Html::anchor('tweet/edit/'.$item->id, '<i class="icon-wrench"></i> Edit', array('class' => 'btn btn-default btn-sm')); ?><?php echo Html::anchor('tweet/delete/'.$item->id, '<i class="icon-trash icon-white"></i> Delete', array('class' => 'btn btn-sm btn-danger', 'onclick' => "return confirm('Are you sure?')")); ?></div>
+                        <!-- Menote: Html::anchor is helper to generate html code -->
+                        <!-- readmore: http://fuelphp.com/docs/classes/html.html -->
+                      <?php echo Html::anchor('tweet/view/'.$item->id, '<i class="icon-eye-open"></i> View', array('class' => 'btn btn-default btn-sm')); ?>
+                      <?php echo Html::anchor('tweet/edit/'.$item->id, '<i class="icon-wrench"></i> Edit', array('class' => 'btn btn-default btn-sm')); ?>
+                      <?php echo Html::anchor('tweet/delete/'.$item->id, '<i class="icon-trash icon-white"></i> Delete', array('class' => 'btn btn-sm btn-danger', 'onclick' => "return confirm('Are you sure?')")); ?></div>
                   </div>
               </td>
           </tr>

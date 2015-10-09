@@ -12,6 +12,7 @@ class Controller_Tweet extends Controller_Template
 
 	public function action_view($id = null)
 	{
+        // Menote: if id be null will redirect to /tweet
 		is_null($id) and Response::redirect('tweet');
 
 		if ( ! $data['tweet'] = Model_Tweet::find($id))
@@ -27,20 +28,27 @@ class Controller_Tweet extends Controller_Template
 
 	public function action_create()
 	{
-		if (Input::method() == 'POST')
-		{
-			$val = Model_Tweet::validate('create');
+        // Menote: User class Input(Core) to handle input data
+        // readmore: http://fuelphp.com/docs/classes/input.html
+        if (Input::method() == 'POST')
+        {
 
-			if ($val->run())
-			{
-				$tweet = Model_Tweet::forge(array(
-					'title' => Input::post('title'),
-					'body' => Input::post('body'),
-					'description' => Input::post('description'),
-				));
+            $val = Model_Tweet::validate('create'); // Menote: view validate method in model/tweet.php
 
+            if ($val->run())
+            {
+                // Menote: forge(create) obj tweet in Model_Tweet
+                $tweet = Model_Tweet::forge(array(
+                    'title' => Input::post('title'),
+                    'body' => Input::post('body'),
+                    'description' => Input::post('description'),
+                ));
+
+                // Menote: if it create success
 				if ($tweet and $tweet->save())
 				{
+                    # Menote: set flash notify in view when create tweet success
+                    # readmore: http://fuelphp.com/docs/classes/session/usage.html
 					Session::set_flash('success', 'Added tweet #'.$tweet->id.'.');
 
 					Response::redirect('tweet');
@@ -55,59 +63,61 @@ class Controller_Tweet extends Controller_Template
 			{
 				Session::set_flash('error', $val->error());
 			}
-		}
+        }
 
 		$this->template->title = "Tweets";
-		$this->template->content = View::forge('tweet/create');
+        $this->template->content = View::forge('tweet/create');
 
-	}
+    }
 
-	public function action_edit($id = null)
-	{
-		is_null($id) and Response::redirect('tweet');
+    public function action_edit($id = null)
+    {
+        is_null($id) and Response::redirect('tweet');
 
-		if ( ! $tweet = Model_Tweet::find($id))
-		{
-			Session::set_flash('error', 'Could not find tweet #'.$id);
-			Response::redirect('tweet');
-		}
+        if ( ! $tweet = Model_Tweet::find($id))
+        {
+            Session::set_flash('error', 'Could not find tweet #'.$id);
+            Response::redirect('tweet');
+        }
 
-		$val = Model_Tweet::validate('edit');
+        $val = Model_Tweet::validate('edit');
 
-		if ($val->run())
-		{
-			$tweet->title = Input::post('title');
-			$tweet->body = Input::post('body');
-			$tweet->description = Input::post('description');
+        if ($val->run())
+        {
+            $tweet->title = Input::post('title');
+            $tweet->body = Input::post('body');
+            $tweet->description = Input::post('description');
 
-			if ($tweet->save())
-			{
-				Session::set_flash('success', 'Updated tweet #' . $id);
+            if ($tweet->save())
+            {
+                Session::set_flash('success', 'Updated tweet #' . $id);
 
-				Response::redirect('tweet');
-			}
+                Response::redirect('tweet');
+            }
 
-			else
-			{
-				Session::set_flash('error', 'Could not update tweet #' . $id);
-			}
-		}
+            else
+            {
+                Session::set_flash('error', 'Could not update tweet #' . $id);
+            }
+        }
 
-		else
-		{
-			if (Input::method() == 'POST')
-			{
-				$tweet->title = $val->validated('title');
-				$tweet->body = $val->validated('body');
-				$tweet->description = $val->validated('description');
+        else
+        {
+            if (Input::method() == 'POST')
+            {
+                $tweet->title = $val->validated('title');
+                $tweet->body = $val->validated('body');
+                $tweet->description = $val->validated('description');
 
-				Session::set_flash('error', $val->error());
-			}
+                Session::set_flash('error', $val->error());
+            }
+            // Menote: set global variable $tweet use views
+            // readmore: http://fuelphp.com/docs/classes/view.html
+            $this->template->set_global('tweet', $tweet, false);
+        }
 
-			$this->template->set_global('tweet', $tweet, false);
-		}
-
-		$this->template->title = "Tweets";
+        $this->template->title = "Tweets";
+        // Menote: create view obj for tweet/edit and append to $content of template.php
 		$this->template->content = View::forge('tweet/edit');
 
 	}
