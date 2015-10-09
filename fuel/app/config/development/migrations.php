@@ -7,6 +7,7 @@ return array(
       'default' => 
       array(
         0 => '001_create_tweets',
+        1 => '003_create_products',
       ),
     ),
     'module' => 
