@@ -272,6 +272,7 @@ return array(
         // Menote: enable package(orm) to use
 		'packages'  => array(
 			'orm',
+            'auth',
 		),
 
 		/**
