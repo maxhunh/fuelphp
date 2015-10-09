@@ -20,7 +20,7 @@
 	<div class="container">
         <div class="col-md-12">
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-                <?php echo Html::anchor('root','Home',array('class'=>'navbar-brand'));?>
+                <?php echo Html::anchor('tweet/index','Home',array('class'=>'navbar-brand'));?>
                 <ul class="nav navbar-nav">
                     <li class="active">
                        <?php echo Html::anchor('tweet/index','Tweets');?>
@@ -31,7 +31,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                       <?php echo Html::anchor('admin/index','Admins');?>
+                       <?php echo Html::anchor('admin/index','Admin');?>
                     </li>
                     <?php if (isset($current_user)): ?>
                         <li>
