@@ -8,12 +8,19 @@
 	<style>
 		body { margin: 40px; }
 	</style>
+    <?php echo Asset::js(array(
+        'http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js',
+        'bootstrap.js',
+    )); ?>
+    <script>
+        $(function(){ $('.topbar').dropdown(); });
+    </script>
 </head>
 <body>
 	<div class="container">
         <div class="col-md-12">
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-                <a class="navbar-brand" href="/">Home</a>
+                <?php echo Html::anchor('root','Home',array('class'=>'navbar-brand'));?>
                 <ul class="nav navbar-nav">
                     <li class="active">
                        <?php echo Html::anchor('tweet/index','Tweets');?>
@@ -21,6 +28,19 @@
                     <li>
                        <?php echo Html::anchor('product/index','Products');?>
                     </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                       <?php echo Html::anchor('admin/index','Admins');?>
+                    </li>
+                    <?php if (isset($current_user)): ?>
+                        <li>
+                           <a data-toggle="dropdown" class="dropdown-toggle" href="#"><?php echo  $current_user->username ?> <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><?php echo Html::anchor('admin/logout', 'Logout') ?></li>
+                            </ul>
+                        </li>
+                    <?php endif ?>
                 </ul>
             </nav>
     		<div class="col-md-12">
