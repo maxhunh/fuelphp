@@ -5,6 +5,9 @@ class Controller_Tweet extends Controller_Base
 	public function action_index()
 	{
 		$data['tweets'] = Model_Tweet::find('all');
+        // Menote: try use Debug class of fuelphp
+        // readmore: http://fuelphp.com/docs/classes/debug.html
+        // Debug::dump($data['tweets']);
 		$this->template->title = "Tweets";
 		$this->template->content = View::forge('tweet/index', $data);
 
@@ -13,7 +16,7 @@ class Controller_Tweet extends Controller_Base
 	public function action_view($id = null)
 	{
         // Menote: if id be null will redirect to /tweet
-		is_null($id) and Response::redirect('tweet');
+		Controller_Tweet::pre_process($id);
 
 		if ( ! $data['tweet'] = Model_Tweet::find($id))
 		{
@@ -72,7 +75,7 @@ class Controller_Tweet extends Controller_Base
 
     public function action_edit($id = null)
     {
-        is_null($id) and Response::redirect('tweet');
+        Controller_Tweet::pre_process($id);
 
         if ( ! $tweet = Model_Tweet::find($id))
         {
@@ -124,7 +127,7 @@ class Controller_Tweet extends Controller_Base
 
 	public function action_delete($id = null)
 	{
-		is_null($id) and Response::redirect('tweet');
+		Controller_Tweet::pre_process($id);
 
 		if ($tweet = Model_Tweet::find($id))
 		{
@@ -141,5 +144,10 @@ class Controller_Tweet extends Controller_Base
 		Response::redirect('tweet');
 
 	}
+
+    public static function pre_process($id = null)
+    {
+        is_null($id) and Response::redirect('tweet');
+    }
 
 }

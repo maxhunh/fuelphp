@@ -6,6 +6,7 @@ class Controller_Admin extends Controller_Base
 
 	public function before()
 	{
+        // Menote: call function before of class Controller_Bass
 		parent::before();
 
 		if (Request::active()->controller !== 'Controller_Admin' or ! in_array(Request::active()->action, array('login', 'logout')))

@@ -3,6 +3,13 @@
 class Controller_Product extends Controller_Base
 {
 
+    // Menote: handle special action for page (action get of page index)
+    // readmore: http://fuelphp.com/docs/general/controllers/base.html#/http_method_prefixed_actions
+    // public function get_index()
+    // {
+    //     return "Here is function get index";
+    // }
+
 	public function action_index()
 	{
         $this->template->title = 'Product &raquo; Index';
