@@ -2,6 +2,7 @@ docs
 fuel/app/logs/*/*/*
 fuel/app/cache/*/*
 /fuel/vendor
+/fuel/core/*.*
 /composer.lock
 Thumbs.db
 desktop.ini

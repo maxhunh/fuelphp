@@ -30,6 +30,7 @@
         <?php endforeach; ?>
      </tbody>
 </table>
+    <?php echo Pagination::instance('mypagination')->render(); ?>
 
 <?php else: ?>
     <p>No Tweets.</p>
