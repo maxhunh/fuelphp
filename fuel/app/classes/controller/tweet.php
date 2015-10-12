@@ -4,7 +4,31 @@ class Controller_Tweet extends Controller_Template
 
 	public function action_index()
 	{
-		$data['tweets'] = Model_Tweet::find('all');
+		// $data['tweets'] = Model_Tweet::find('all');
+
+        $config = array(
+            // Menote: Fix me
+            'pagination_url' => 'http://localhost/fuel/tweet/index/',
+            'total_items'    => Model_Tweet::count(),
+            'per_page'       => 2,
+            'uri_segment'    => 3,
+            // or if you prefer pagination by query string
+            //'uri_segment'    => 'page',
+            );
+
+        $pagination = Pagination::forge('mypagination', $config);
+
+        $data['tweets'] = Model_Tweet::query()
+        ->rows_offset($pagination->offset)
+        ->rows_limit($pagination->per_page)
+        ->get();
+
+        // we pass the object, it will be rendered when echo'd in the view
+        $data['pagination'] = $pagination;
+
+        // return the view
+        // return \View::forge('tweet/index', $data);
+
 		$this->template->title = "Tweets";
 		$this->template->content = View::forge('tweet/index', $data);
 
