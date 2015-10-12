@@ -1,3 +1,7 @@
 docs
 fuel/app/logs/*/*/*
 fuel/app/cache/*/*
+/fuel/vendor
+/composer.lock
+Thumbs.db
+desktop.ini
