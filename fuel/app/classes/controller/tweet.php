@@ -7,8 +7,7 @@ class Controller_Tweet extends Controller_Template
 		// $data['tweets'] = Model_Tweet::find('all');
 
         $config = array(
-            // Menote: Fix me
-            'pagination_url' => 'http://localhost/fuel/tweet/index/',
+            'pagination_url' => 'http://localhost:8888/tweet/index/',
             'total_items'    => Model_Tweet::count(),
             'per_page'       => 2,
             'uri_segment'    => 3,
