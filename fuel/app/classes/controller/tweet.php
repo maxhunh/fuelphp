@@ -8,7 +8,7 @@ class Controller_Tweet extends Controller_Template
 
         $config = array(
             // Menote: Fix me
-            'pagination_url' => 'http://localhost/fuel/tweet/index/',
+            'pagination_url' => Uri::base().'/tweet/index/',
             'total_items'    => Model_Tweet::count(),
             'per_page'       => 2,
             'uri_segment'    => 3,

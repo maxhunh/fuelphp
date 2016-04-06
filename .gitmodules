@@ -1,19 +1,25 @@
 [submodule "fuel/packages/orm"]
 	path = fuel/packages/orm
 	url = http://github.com/fuel/orm.git
+    ignore = dirty
 [submodule "fuel/packages/auth"]
 	path = fuel/packages/auth
 	url = http://github.com/fuel/auth.git
+    ignore = dirty
 [submodule "fuel/packages/oil"]
 	path = fuel/packages/oil
 	url = http://github.com/fuel/oil.git
+    ignore = dirty
 [submodule "fuel/packages/parser"]
 	path = fuel/packages/parser
 	url = http://github.com/fuel/parser.git
+    ignore = dirty
 [submodule "fuel/packages/email"]
 	path = fuel/packages/email
 	url = http://github.com/fuel/email.git
+    ignore = dirty
 [submodule "fuel/core"]
 	path = fuel/core
 	url = http://github.com/fuel/core.git
+    ignore = dirty
 
